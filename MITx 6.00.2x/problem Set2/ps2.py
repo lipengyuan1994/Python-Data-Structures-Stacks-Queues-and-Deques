@@ -171,6 +171,7 @@ class Robot(object):
         self.speed = speed
         self.direction = random.randint(0,359)
         self.position = room.getRandomPosition()
+        self.room.cleanTileAtPosition(self.getRobotPosition())
 
 
     def getRobotPosition(self):
@@ -227,25 +228,9 @@ class StandardRobot(Robot):
     direction; when it would hit a wall, it *instead* chooses a new direction
     randomly.
     """
-
-    def __init__(self, room, speed):
-        """
-        Initializes a Robot with the given speed in the specified room. The
-        robot initially has a random direction and a random position in the
-        room. The robot cleans the tile it is on.
-
-        room:  a RectangularRoom object.
-        speed: a float (speed > 0)
-        """
-        self.room = room
-        self.speed = speed
-        self.direction = random.randint(0,359)
-        self.position = room.getRandomPosition()
-        self.room.cleanTileAtPosition(self.getRobotPosition())
     def updatePositionAndClean(self):
         """
         Simulate the passage of a single time-step.
-
         Move the robot to a new position and mark the tile it is on as having
         been cleaned.
         """
@@ -282,6 +267,7 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
     robot_type: class of robot to be instantiated (e.g. StandardRobot or
                 RandomWalkRobot)
     """
+    anim = ps2_visualize.RobotVisualization(num_robots, width, height)
     results = []
     for i in range(num_trials):
         num_steps = 0
@@ -290,10 +276,12 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
         while (room.getNumCleanedTiles()/room.getNumTiles()) < min_coverage:
             num_steps += 1
             for robot in robots:
+                anim.update(room, robots)
                 robot.updatePositionAndClean()
             if (room.getNumCleanedTiles()/room.getNumTiles()) >= min_coverage:
                 results.append(num_steps)
                 break
+                anim.done()
 
 
 
@@ -302,7 +290,7 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
 
 
 # Uncomment this line to see how much your simulation takes on average
-print(runSimulation(1, 1.0, 10, 10, 0.75, 30, StandardRobot))
+print(runSimulation(2, 1.0, 10, 10, 0.75, 30, StandardRobot))
 
 
 # === Problem 5
@@ -311,14 +299,20 @@ class RandomWalkRobot(Robot):
     A RandomWalkRobot is a robot with the "random walk" movement strategy: it
     chooses a new direction at random at the end of each time-step.
     """
+
     def updatePositionAndClean(self):
         """
         Simulate the passage of a single time-step.
-
         Move the robot to a new position and mark the tile it is on as having
         been cleaned.
         """
-        raise NotImplementedError
+        self.room.cleanTileAtPosition(self.getRobotPosition())
+        self.direction = random.randint(0, 359)
+        new_pos = self.getRobotPosition().getNewPosition(self.getRobotDirection(), self.speed)
+        if not self.room.isPositionInRoom(new_pos):
+            self.setRobotDirection(random.randint(0, 359))
+        else:
+            self.setRobotPosition(new_pos)
 
 
 def showPlot1(title, x_label, y_label):
