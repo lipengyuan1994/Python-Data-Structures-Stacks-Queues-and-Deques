@@ -267,7 +267,7 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
     robot_type: class of robot to be instantiated (e.g. StandardRobot or
                 RandomWalkRobot)
     """
-    anim = ps2_visualize.RobotVisualization(num_robots, width, height)
+    # anim = ps2_visualize.RobotVisualization(num_robots, width, height)
     results = []
     for i in range(num_trials):
         num_steps = 0
@@ -276,12 +276,12 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
         while (room.getNumCleanedTiles()/room.getNumTiles()) < min_coverage:
             num_steps += 1
             for robot in robots:
-                anim.update(room, robots)
+                # anim.update(room, robots)
                 robot.updatePositionAndClean()
             if (room.getNumCleanedTiles()/room.getNumTiles()) >= min_coverage:
                 results.append(num_steps)
                 break
-                anim.done()
+                # anim.done()
 
 
 
@@ -290,7 +290,7 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
 
 
 # Uncomment this line to see how much your simulation takes on average
-print(runSimulation(2, 1.0, 10, 10, 0.75, 30, StandardRobot))
+# print(runSimulation(2, 1.0, 10, 10, 0.75, 30, StandardRobot))
 
 
 # === Problem 5
@@ -365,7 +365,8 @@ def showPlot2(title, x_label, y_label):
 # 1) Write a function call to showPlot1 that generates an appropriately-labeled
 #     plot.
 #
-#       (... your call here ...)
+# showPlot1('q1','x','y')
+showPlot2('q2','x','y')
 #
 
 #
