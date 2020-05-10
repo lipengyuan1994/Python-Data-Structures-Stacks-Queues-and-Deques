@@ -5,6 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 3.7 (py3.7)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="玩儿钱" />
+    <orderEntry type="module" module-name="btc" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
