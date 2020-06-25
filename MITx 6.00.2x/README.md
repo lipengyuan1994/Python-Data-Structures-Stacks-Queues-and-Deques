@@ -1,5 +1,6 @@
 ### MITx: 6.00.2x  
 # Introduction to Computational Thinking and Data Science
+Author: Pengyuan Li  🌰
 ![Imgur](https://i.imgur.com/EtJpU38.png)
 
 [Link to MITx 6.00.2x in edX](https://courses.edx.org/courses/course-v1:MITx+6.00.2x+1T2020)
@@ -22,3 +23,10 @@ There's an old Chinese saying:  书山有路勤为径，学海无涯苦作舟。
 
 Happy learning! 
  
+---
+update on Jun 24, 2020 
+
+I am working on organize the notes & materials: 
+1. I am adding comments on the code snippets.
+2. I am moving the pdf documents to markdown format documents.
+

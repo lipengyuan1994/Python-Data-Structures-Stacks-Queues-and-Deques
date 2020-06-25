@@ -1,4 +1,8 @@
 class Food(object):
+    """
+    initialize a Food class
+    """
+
     def __init__(self, n, v, w):
         self.name = n
         self.value = v
@@ -25,16 +29,16 @@ def buildMenu(names, values, calories):
        returns list of Foods"""
     menu = []
     for i in range(len(values)):
-        menu.append(Food(names[i], values[i],
-                         calories[i]))
+        menu.append(Food(names[i], values[i], calories[i]))
     return menu
 
 
 def greedy(items, maxCost, keyFunction):
-    """Assumes items a list, maxCost >= 0,
-         keyFunction maps elements of items to numbers"""
-    itemsCopy = sorted(items, key=keyFunction,
-                       reverse=True)
+    """Assumes items a list, maxCost >= 0,keyFunction maps elements of items to numbers.
+    keyFunction:
+    """
+    itemsCopy = sorted(items, key=keyFunction, reverse=True)
+    print('keyFunction: {}'.format(keyFunction))
     result = []
     totalValue, totalCost = 0.0, 0.0
     for i in range(len(itemsCopy)):
