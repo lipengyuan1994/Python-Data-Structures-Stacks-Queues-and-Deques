@@ -34,7 +34,7 @@ fib(120) = 8,670,007,398,507,948,658,051,921
 
 
 
-* Using a Memo(memoization ) to Compute Fibonnaci
+* Using a Memo(memoization )/**Dynamic Programming** to Compute Fibonnaci
     * Trade a time for space Create a table to record what we’ve done
     * Before computing fib(x), check if value of fib(x) already stored in the table ◦ If so, look it up ◦ If not, compute it and then add it to table ◦ Called memoization
 ```python
@@ -56,7 +56,11 @@ def fastFib(n, memo = {}):
     * Overlapping subproblems: finding an optimal solution involves solving the same problem multiple times
         * Compute fib(x) or many times
         
+![](./lecture2-image/35.jpg)
         
+----
+
+
 ![](./lecture2-image/1.jpg)
 ![](./lecture2-image/2.jpg)
 ![](./lecture2-image/3.jpg)
@@ -91,4 +95,3 @@ def fastFib(n, memo = {}):
 ![](./lecture2-image/32.jpg)
 ![](./lecture2-image/33.jpg)
 ![](./lecture2-image/34.jpg)
-![](./lecture2-image/35.jpg)
